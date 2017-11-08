@@ -841,6 +841,7 @@ function onEntercMyCoursesPlay()
 canPlay = CourseBot:clearCheckTry()
 
 if canPlay == true then
+	GlobalData:setGameplayType(0)
 	CourseBot:playMyCourse()
 else
 	stateMachine:requestState(courseBot_state.cRun)	

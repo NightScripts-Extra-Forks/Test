@@ -817,49 +817,9 @@
                 }
             },
             {
-                "name":"PlaySlide",
-                "layer":0,
-                "group":7,
-                "top":"Play_SlidePass_TOP",
-                "bot":"",
-                "topOrtho":"True",
-                "botOrtho":"True",
-                "topZOffset":1.0,
-                "botZOffset":1.0,
-                "buttons":
-                [
-                    
-                ],
-                "stateAnims":
-                [
-                    {
-                        "state":"Open",
-                        "animsTop":
-                        [
-                            {
-                                "anim":"In",
-                                "delay":0
-                            }
-                        ],
-                        "animsBot":
-                        [
-                            
-                        ]
-                    }
-                ],
-                "animTriggers":
-                [
-                    
-                ],
-                "flow":
-                {
-                    
-                }
-            },
-            {
                 "name":"PlaySlideTouch",
                 "layer":0,
-                "group":8,
+                "group":7,
                 "top":"Play_SlidePassIcon_TOP",
                 "bot":"",
                 "topOrtho":"True",
@@ -914,7 +874,7 @@
             {
                 "name":"PlaySlideKey",
                 "layer":0,
-                "group":9,
+                "group":8,
                 "top":"Play_SlidePassIconKey_TOP",
                 "bot":"",
                 "topOrtho":"True",
@@ -969,7 +929,7 @@
             {
                 "name":"PopupDialogLite",
                 "layer":0,
-                "group":10,
+                "group":9,
                 "script":"PopupDialogLite.lua",
                 "top":"",
                 "bot":"Cmn_DialogueBox2_BOTTOM",
@@ -1088,6 +1048,33 @@
                 {
                     
                 }
+            },
+            {
+                "name":"1UpPresentation",
+                "layer":0,
+                "group":10,
+                "top":"Play_PlayScene_TOP_00",
+                "bot":"",
+                "topOrtho":"True",
+                "botOrtho":"True",
+                "topZOffset":1.0,
+                "botZOffset":1.0,
+                "buttons":
+                [
+                    
+                ],
+                "stateAnims":
+                [
+                    
+                ],
+                "animTriggers":
+                [
+                    
+                ],
+                "flow":
+                {
+                    
+                }
             }
         ],
         "groups":
@@ -1163,15 +1150,6 @@
                             ]
                         },
                         {
-                            "name":"PlaySlide",
-                            "screens":
-                            [
-                                {
-                                    "name":"PlaySlide"
-                                }
-                            ]
-                        },
-                        {
                             "name":"PlaySlideTouch",
                             "screens":
                             [
@@ -1195,6 +1173,15 @@
                             [
                                 {
                                     "name":"PopupDialogLite"
+                                }
+                            ]
+                        },
+                        {
+                            "name":"1UpMushroom",
+                            "screens":
+                            [
+                                {
+                                    "name":"1UpPresentation"
                                 }
                             ]
                         }

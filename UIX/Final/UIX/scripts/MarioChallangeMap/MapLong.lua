@@ -75,6 +75,7 @@ gMarioId = 0
 gKuriboId = 1
 gPeachCastleId = 2
 gBowserCastleId = 3
+gDialogSeen = nil
 
 gCancelActive = false
 
@@ -490,7 +491,16 @@ g_currentJourneyWorld = 9
 g_nextJourneyWorld = 10
 
 -- hide peach
-ui:getScreen(2):setVisible("P_Peach_00", false)
+if gWorldIndex == endWorld then
+	ui:getScreen(2):setVisible("P_Peach_00", true)
+	ui:getScreen(2):playAnimation("AnimB")
+else
+	ui:getScreen(2):setVisible("P_Peach_00", false)
+end
+-- show small shadow for tower, and big shadow for mega castle
+ui:getScreen(SCREEN.TOP):setVisible("B_CastleSh_03", gWorldIndex == endWorld)
+ui:getScreen(SCREEN.TOP):setVisible("P_TowerSh_00", gWorldIndex ~= endWorld)
+
 -- hide SWAP
 showSWAP(false)
 
@@ -711,8 +721,8 @@ end
 
 
 if gWorldIndex == 17 then
-	ui:getScreen(2):setVisible("P_Peach_00", true)
-	ui:getScreen(2):playAnimation("AnimB")
+	--ui:getScreen(2):setVisible("P_Peach_00", true)
+	--ui:getScreen(2):playAnimation("AnimB")
 end
 
 end
@@ -1062,6 +1072,11 @@ end
 function onEntercDemoMoveKuriboJourneyIn()
 local topScreen = ui:getScreen(2)
 
+-- show small shadow for tower, and big shadow for mega castle
+ui:getScreen(SCREEN.TOP):setVisible("B_CastleSh_03", gWorldIndex == endWorld)
+ui:getScreen(SCREEN.TOP):setVisible("P_TowerSh_00", gWorldIndex ~= endWorld)
+
+
 --ui:getScreen(2):setVisible("SWAP_WorldMapKuribo_00", true)
 anim = topScreen:playAnimation("SWAP_peac_in")
 anim = topScreen:playAnimation("BG_in")
@@ -1225,6 +1240,13 @@ if gIs1stDemoFlag == false then
 	--ChallangeMap:openNextLevelNode()
 end
 
+-- hide peach as we dont need to show her
+ui:getScreen(SCREEN.TOP):setVisible("N_Peach_01", gWorldIndex == endWorld)
+-- show small shadow for tower, and big shadow for mega castle
+ui:getScreen(SCREEN.TOP):setVisible("B_CastleSh_03", gWorldIndex == endWorld)
+ui:getScreen(SCREEN.TOP):setVisible("P_TowerSh_00", gWorldIndex ~= endWorld)
+
+
 ChallangeMap:markNodeAs(0, 0)
 
 setWorldMusic()
@@ -1357,6 +1379,7 @@ if gLevelJumpIndex ~= endWorld and gLevelJumpIndex ~= startWorld then
 	showSWAP(true)
 	-- hide info panel
 	ui:getScreen(2):setVisible("W_InfoBG_01", false)
+	
 	if g_swapColors == true then
 		-- black color is current world, white color is next world
 		ChallangeMap:setTransitionTheme(g_nextJourneyWorld, g_currentJourneyWorld)
@@ -1369,6 +1392,13 @@ else
 	-- show info panel
 	ui:getScreen(2):setVisible("W_InfoBG_01", true)
 end
+
+-- hide peach as we dont need to show her
+ui:getScreen(SCREEN.TOP):setVisible("N_Peach_01", gLevelJumpIndex == endWorld)
+-- show small shadow for tower, and big shadow for mega castle
+ui:getScreen(SCREEN.TOP):setVisible("B_CastleSh_03", gLevelJumpIndex == endWorld)
+ui:getScreen(SCREEN.TOP):setVisible("P_TowerSh_00", gLevelJumpIndex ~= endWorld)
+
 
 --g_swapColors = not g_swapColors
 
@@ -1404,6 +1434,8 @@ if gIs1stDemoFlag == false then
 	anim = topScreen:playAnimation("AnimB")
 	ChallangeMap:openNextLevelNode()
 end
+
+
 
 if gCancelActive then
 	-- hide kuribos
@@ -1474,7 +1506,7 @@ end
 function onUpdatecInConversation()
 if ui:isFocused() and ui:isActive() then
 	-- mark dialog as seen
-	GlobalData:setChallengeMapDialogSeen(1)
+	gDialogSeen = 1
 	-- returning back from conversation
 	GlobalData:setBusy() -- from here do not let player to enter main menu
 	stateMachine:requestState(MapLong_state.cTelop)
@@ -1489,7 +1521,7 @@ end
 function onUpdatecInConversationChangeLevel()
 if ui:isFocused() and ui:isActive() then
 	-- mark dialog as seen
-	GlobalData:setChallengeMapDialogSeen(GlobalData:getChallengeWorldIndex()+2) -- counting includes very first dialog before Peach capture
+	gDialogSeen = GlobalData:getChallengeWorldIndex()+2 -- counting includes very first dialog before Peach capture
 	-- returning back from conversation
 	GlobalData:setBusy() -- from here do not let player to enter main menu
 	stateMachine:requestState(MapLong_state.cMarioMoveToNextWorld)
@@ -1555,6 +1587,11 @@ GlobalData:setAsBossStage(isBossLevel())
 GlobalData:setChallengeLevelPresentationIndex(-1)
 GlobalData:setChallengePlaying(true)
 GlobalData:writeToSaveDataChallengeMode() -- make sure we save it later
+if gDialogSeen ~= nil then
+	-- mark dialog as seen
+	GlobalData:setChallengeMapDialogSeen(gDialogSeen)
+	gDialogSeen = nil
+end
 GlobalData:playMarioChallenge()
 local nextWorldIndex =  getWorldIndex(gCurrentLevelIndex+2)
 if nextWorldIndex ~= nil then

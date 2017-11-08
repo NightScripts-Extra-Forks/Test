@@ -131,10 +131,12 @@ function onExitcOpenPlayOptions()
 end
 function onEntercClosePlayOptions()
 Sound:playSound("title_cancel")
+ui:disableInput()
 gCloseOptionsAnim =  ui:getScreen(SCREEN.BOTTOM):playAnimation("DecideBackBtn", false)
 end
 function onUpdatecClosePlayOptions()
 if gCloseOptionsAnim:isPlaying() == false then
+	ui:enableInput()
 	stateMachine:requestState(title_state.cEnd)
 end
 end

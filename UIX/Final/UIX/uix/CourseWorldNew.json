@@ -71,7 +71,7 @@
                         ],
                         "callback":
                         {
-                            "state":"Enabled_Touch_Release",
+                            "state":"RELEASED",
                             "uiName":"MainMenu"
                         }
                     },
@@ -368,6 +368,10 @@
                             {
                                 "state":"ON_PRESSED",
                                 "SFX":"cmn_select"
+                            },
+                            {
+                                "state":"ON_RELEASED",
+                                "SFX":"courseworld_back"
                             },
                             {
                                 "state":"CANCEL",
@@ -671,7 +675,7 @@
                                 "SFX":"cmn_select"
                             },
                             {
-                                "state":"CANCEL",
+                                "state":"ON_CANCEL",
                                 "SFX":"cmn_cancel"
                             }
                         ],
@@ -689,7 +693,7 @@
                                 "SFX":"cmn_select"
                             },
                             {
-                                "state":"CANCEL",
+                                "state":"ON_CANCEL",
                                 "SFX":"cmn_cancel"
                             }
                         ],
@@ -751,7 +755,11 @@
                                 "SFX":"cmn_select"
                             },
                             {
-                                "state":"CANCEL",
+                                "state":"ON_RELEASED",
+                                "SFX":"courseworld_back"
+                            },
+                            {
+                                "state":"ON_CANCEL",
                                 "SFX":"cmn_cancel"
                             }
                         ],
@@ -769,13 +777,13 @@
                                 "SFX":"cmn_select"
                             },
                             {
-                                "state":"CANCEL",
+                                "state":"ON_CANCEL",
                                 "SFX":"cmn_cancel"
                             }
                         ],
                         "callback":
                         {
-                            "state":"Enabled_Touch_Release",
+                            "state":"RELEASED",
                             "uiName":"MainMenu"
                         }
                     }
@@ -1227,7 +1235,7 @@
                         ],
                         "callback":
                         {
-                            "state":"Enabled_Touch_Release",
+                            "state":"RELEASED",
                             "uiName":"MainMenu"
                         }
                     }
@@ -1435,7 +1443,7 @@
                         ],
                         "callback":
                         {
-                            "state":"Enabled_Touch_Release",
+                            "state":"RELEASED",
                             "uiName":"MainMenu"
                         }
                     }
@@ -3003,6 +3011,34 @@
                 {
                     
                 }
+            },
+            {
+                "name":"AToSkip_Map",
+                "layer":1,
+                "group":1,
+                "top":"",
+                "bot":"Cmn_AtoSkip_BOTTOM",
+                "topOrtho":"True",
+                "botOrtho":"True",
+                "MsgBinBot":"LayoutMsg/LWM/LWM_WorldMap_00.msbt",
+                "topZOffset":1.0,
+                "botZOffset":1.0,
+                "buttons":
+                [
+                    
+                ],
+                "stateAnims":
+                [
+                    
+                ],
+                "animTriggers":
+                [
+                    
+                ],
+                "flow":
+                {
+                    
+                }
             }
         ],
         "groups":
@@ -3029,6 +3065,9 @@
                             [
                                 {
                                     "name":"HundredMarioTitle"
+                                },
+                                {
+                                    "name":"AToSkip_Map"
                                 }
                             ]
                         },
@@ -3201,6 +3240,13 @@
                                 {
                                     "name":"PopupDialogLite"
                                 }
+                            ]
+                        },
+                        {
+                            "name":"",
+                            "screens":
+                            [
+                                
                             ]
                         }
                     ]

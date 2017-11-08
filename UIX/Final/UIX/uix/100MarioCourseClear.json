@@ -130,11 +130,12 @@
                 }
             },
             {
-                "name":"1UpPresentation",
+                "name":"faderSquares",
                 "layer":0,
                 "group":1,
-                "top":"Play_PlayScene_TOP_00",
-                "bot":"",
+                "script":"faderSquares.lua",
+                "top":"Cmn_Fade_TOP",
+                "bot":"Cmn_Fade_BOTTOM",
                 "topOrtho":"True",
                 "botOrtho":"True",
                 "topZOffset":1.0,
@@ -145,7 +146,23 @@
                 ],
                 "stateAnims":
                 [
-                    
+                    {
+                        "state":"Open",
+                        "animsTop":
+                        [
+                            {
+                                "anim":"InBlock",
+                                "delay":0
+                            }
+                        ],
+                        "animsBot":
+                        [
+                            {
+                                "anim":"InBlock",
+                                "delay":0
+                            }
+                        ]
+                    }
                 ],
                 "animTriggers":
                 [
@@ -159,7 +176,7 @@
         ],
         "groups":
         {
-            "default":"1UpMushroom",
+            "default":"Default",
             "layerCount":1,
             "groupList":
             [
@@ -176,11 +193,11 @@
                             ]
                         },
                         {
-                            "name":"1UpMushroom",
+                            "name":"faderSquares",
                             "screens":
                             [
                                 {
-                                    "name":"1UpPresentation"
+                                    "name":"faderSquares"
                                 }
                             ]
                         }

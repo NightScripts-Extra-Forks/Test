@@ -27,7 +27,7 @@ function onEntercEnter()
 
 end
 function onUpdatecEnter()
-if ui:isActive() and ui:isIdle() then
+if ui:isActive() then -- init dialog on activate
 	stateMachine:requestState(SlidePassExplain_state.cInit)
 end
 end
